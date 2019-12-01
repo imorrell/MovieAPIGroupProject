@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "DisplayMoviesByTitle";
+}
+
+@model Searchobject
+<h1>Display Movies By Title</h1>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>ImdbID</th>
+    </tr>
+    @for (int i = 0; i < Model.Search.Length; i++)
+    {
+
+        <tr>
+            <td>@Model.Search[i].Title;</td>
+            <td>@Model.Search[i].Year;</td>
+            <td>@Model.Search[i].Type;</td>
+            <td>@Model.Search[i].imdbID;</td>
+            
+            <td>
+                <form action="../MoviesDb/AddToFavorites" method="post">
+                    <input type="hidden" name="Title" value="@Model.Search[i].Title" />
+                    <input type="hidden" name="Year" value="@Model.Search[i].Year" />
+                    <input type="hidden" name="Type" value="@Model.Search[i].Type" />
+                    <input type="hidden" name="IdbmmovieRating" value="@Model.Search[i].imdbID" />
+
+                    <input type="submit" class="bg-success" value="Add to favorites" />
+                </form>
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+
+
