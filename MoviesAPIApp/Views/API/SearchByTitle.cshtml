@@ -9,9 +9,16 @@
 <table class="table">
     <tr>
         <th>Title</th>
+        <th>Year</th>
+        <th>Type</th>
+        <th>Rating</th>
     </tr>
 
     <tr>
+        <td>@Model.Title</td>
+        <td>@Model.Year</td>
+        <td>@Model.Type</td>
+        <td>@Model.imdbID</td>
         <td>
             <form action="../MoviesDb/AddToFavorites" method="post">
                 <input type="hidden" name="Title" value="@Model.Title" />

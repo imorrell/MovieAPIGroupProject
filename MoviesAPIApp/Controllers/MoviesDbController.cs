@@ -25,20 +25,21 @@ namespace MoviesAPIApp.Controllers
 
         public IActionResult DisplayFavoriteMovies()
         {
-
             string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-           return View(_context.FavoriteMovies.Where(tasks => tasks.UserId == id).ToList());
-            
-
+            if (_context.AspNetUsers.Where(x => x.Id == id) != null)
+            {
+                return View(_context.FavoriteMovies.Where(tasks => tasks.UserId == id).ToList());
+            }
+            _context.FavoriteMovies.ToList();
+            return View();
         }
-
+        
 
         public IActionResult AddToFavorites(Search searchObject)
         {
             //determine the user
             string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             ViewBag.Id = id;
-
 
             //create favorite movie object
             FavoriteMovies movie = new FavoriteMovies
@@ -51,23 +52,21 @@ namespace MoviesAPIApp.Controllers
                 UserId = id
             };
 
-
             _context.FavoriteMovies.Add(movie);
             _context.SaveChanges();
             return RedirectToAction("DisplayFavoriteMovies");
-
-
         }
 
         public IActionResult DeleteMovie(int id)
         {
             var foundMovie = _context.FavoriteMovies.Find(id);
-           
+            if (foundMovie != null)
+            {
                 _context.Remove(foundMovie);
                 _context.SaveChanges();
-            
+            }
             return RedirectToAction("DisplayFavoriteMovies");
         }
-        
+
     }
 }

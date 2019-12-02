@@ -16,15 +16,15 @@
     </tr>
     @foreach (FavoriteMovies movie in Model)
     {
-<tr>
-    <td>@movie.Id</td>
-    <td>@movie.Title;</td>
-    <td>@movie.Year;</td>
-    <td>@movie.Type;</td>
-    <td>@movie.IdbmmovieRating;</td>
+        <tr>
+            <td>@movie.Id</td>
+            <td>@movie.Title</td>
+            <td>@movie.Year</td>
+            <td>@movie.Type</td>
+            <td>@movie.IdbmmovieRating</td>
 
-    <td><a href="../MoviesDb/DeleteMovie?id=@movie.Id">Delete Movie</a></td>
-</tr>
+            <td><a href="../MoviesDb/DeleteMovie?id=@movie.Id">Delete Movie</a></td>
+        </tr>
     }
 
 </table>
